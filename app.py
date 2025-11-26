@@ -278,15 +278,16 @@ def get_agent_response(query, history, profile_context, api_key):
          "Anda memiliki akses ke 3 tools khusus: 'Study Plan Generator', 'Cover Letter Drafter', dan 'LinkedIn Optimizer'. "
          "Gunakan tools tersebut JIKA DAN HANYA JIKA user memintanya atau jika konteks percakapan membutuhkannya. "
          "\n\n"
-         "ATURAN RESPON PENTING:\n"
+         "ATURAN RESPON (HARUS DIPATUHI SETIAP SAAT):\n"
          "1. Jika pertanyaan terkait karir/skill: Jawablah dengan profesional dan gunakan tools jika perlu.\n"
-         "2. Jika pertanyaan DI LUAR KONTEKS (misal: 'kenapa bumi bulat', 'resep masakan', dll): \n"
-         "   - Jawablah pertanyaan tersebut secara ringkas dan sopan.\n"
-         "   - NAMUN, di akhir jawaban, Anda WAJIB menambahkan kalimat transisi untuk mengajak user kembali fokus ke topik karir. \n"
-         "   (Contoh: '...Tapi ngomong-ngomong, bagaimana progres persiapan karir Anda? Apakah ada yang ingin didiskusikan terkait CV atau skill?')\n"
-         "3. Jika user meminta simulasi interview: Arahkan mereka untuk membuka Tab 3 (Simulasi Interview).\n"
+         "2. Jika pertanyaan DI LUAR KONTEKS (misal: 'kenapa bumi bulat', 'resep masakan', 'gosip artis', dll): \n"
+         "   - Jawablah pertanyaan tersebut secara ringkas (maksimal 2 kalimat).\n"
+         "   - SETIAP KALI (TANPA KECUALI) Anda menjawab pertanyaan di luar konteks, Anda WAJIB menutup jawaban dengan kalimat transisi untuk mengajak user kembali ke topik karir. \n"
+         "   - JANGAN PERNAH lupa menambahkan kalimat pengingat ini, meskipun user bertanya di luar konteks berkali-kali.\n"
+         "   (Contoh penutup: '...Namun, agar waktu Anda produktif, mari kita kembali bahas strategi karir Anda. Ada update terbaru soal skill yang sedang dipelajari?')\n"
+         "3. Jika user meminta simulasi interview: Arahkan ke Tab 3.\n"
          "\n"
-         "Informasi Profil User saat ini:\n{context_data}"),
+         "Informasi Profil User:\n{context_data}"),
         MessagesPlaceholder(variable_name="chat_history"),
         ("human", "{input}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
@@ -562,3 +563,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
